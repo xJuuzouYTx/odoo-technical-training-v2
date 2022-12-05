@@ -246,9 +246,9 @@ En Odoo, los comandos especiales son un conjunto de operaciones que se utilizan 
 Los comandos especiales en Odoo se representan mediante tuplas de tres elementos, en la forma (operación, ID, valores). La operación indica el tipo de operación que se desea realizar (crear, actualizar, borrar, etc.), el ID es el ID del registro que se desea modificar (si es necesario), y los valores son un diccionario con los campos y sus valores que se desean actualizar (si es necesario).  </br>
 Algunos ejemplos comunes de comandos especiales en Odoo son:
 
-**(0, 0, values):** Este comando se utiliza para crear un nuevo registro en el modelo secundario de la relación y asociarlo con el registro principal.</br>
-**(1, id, values):** Este comando se utiliza para actualizar un registro existente en el modelo secundario de la relación.</br>
-**(3, id, 0):** Este comando remueve el registro de id "id" del set, pero no lo borra, no puede ser usado en create().</br>
-**(4, id, 0):** Este comando añade un registro existente de id "id" al set.</br>
-**(5, 0, 0):** Este comando remueve todos los registros del set, equivalente ausar el comando 3 en todos los registros explicitamente, no puede ser usado en create().</br>
-**(6, 0, 0):** Este comando reemplaza todos los registros exitente establecidos por la lista de "ids", es equivalente ausar el comando 4 para cada "id" en "ids". </br>
+`(0, 0, values)`: Este comando se utiliza para crear un nuevo registro en el modelo secundario de la relación y asociarlo con el registro principal.</br>
+`(1, id, values)`: Este comando se utiliza para actualizar un registro existente en el modelo secundario de la relación.</br>
+`(2, id, 0)`: Este comando se utiliza para borrar un registro existente en el modelo secundario de la relación.</br>
+`(3, id, 0)`: Este comando se utiliza para desvincular un registro existente en el modelo secundario de la relación del registro principal, sin borrarlo.</br>
+`(5, 0, 0)`: Este comando remueve todos los registros del set, equivalente ausar el comando 3 en todos los registros explicitamente, no puede ser usado en create().</br>
+`(6, 0, 0)`: Este comando reemplaza todos los registros exitente establecidos por la lista de "ids", es equivalente ausar el comando 4 para cada "id" en "ids". </br>
