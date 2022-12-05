@@ -170,3 +170,53 @@ Para utilizar estos campos en la interfaz de usuario de Odoo, debes agregar los 
 </form>
 ```
 En este ejemplo, se ha añadido un campo many2one llamado captain que utiliza el widget many2one para mostrar la relación con el modelo res.partner, y un campo one2many llamado crew que utiliza el widget one2many para mostrar la relación con el mismo modelo res.partner.
+
+### Campos calculados
+En Odoo, los campos calculados son aquellos campos que no se almacenan en la base de datos, sino que se calculan a partir de otros campos del modelo de datos. Estos campos se utilizan para mostrar información derivada o agregada que puede ser útil para los usuarios de la aplicación, pero que no necesita ser almacenada de forma permanente en la base de datos.
+
+Por ejemplo, si un modelo de datos tiene campos para almacenar el precio y la cantidad de un producto, se puede crear un campo calculado llamado total que calcule el precio total multiplicando el precio por la cantidad. De esta manera, el usuario puede ver el precio total de un producto en el formulario sin necesidad de calcularlo manualmente.
+
+Para declarar un campo calculado en un modelo de datos de Odoo, se utiliza la clase fields.Compute y se especifica la función que se utilizará para calcular el valor del campo. 
+Por ejemplo:
+```python
+class Product(models.Model):
+    _name = 'product'
+
+    name = fields.Char()
+    price = fields.Float()
+    quantity = fields.Integer()
+
+    # computed field
+    total = fields.Compute('_compute_total', store=True)
+
+    def _compute_total(self):
+        for record in self:
+            record.total = record.price * record.quantity
+```
+En este ejemplo, se ha declarado un campo calculado llamado total que se calcula mediante la función _compute_total. La función recorre cada registro del modelo y calcula el valor del campo total multiplicando el precio por la cantidad.
+
+Para obtener más información sobre cómo declarar y utilizar campos calculados en Odoo, puedes consultar la documentación oficial o buscar tutoriales y recursos en línea.
+
+### Campos calculados: Searching, readonly & Multiplace
+En Odoo, los campos calculados pueden tener diferentes opciones que afectan su comportamiento y uso. Algunas de estas opciones comunes son:
+
+searching: Especifica si el campo puede ser utilizado para realizar búsquedas en la base de datos. Si se establece en True, el campo se incluirá en la lista de campos disponibles para realizar búsquedas en la interfaz de usuario de Odoo.
+readonly: Especifica si el campo es de solo lectura. Si se establece en True, el usuario no podrá editar el valor del campo en la interfaz de usuario.
+multiple: Especifica si el campo puede tener múltiples valores. Si se establece en True, el campo se mostrará como una lista de valores en la interfaz de usuario, en lugar de como un único valor.
+Por ejemplo, si un modelo de datos tiene un campo calculado llamado total que se calcula a partir del precio y la cantidad de un producto, se puede declarar de la siguiente manera:
+```python
+class Product(models.Model):
+    _name = 'product'
+
+    name = fields.Char()
+    price = fields.Float()
+    quantity = fields.Integer()
+
+    # computed field
+    total = fields.Compute('_compute_total', store=True, search=True, readonly=True)
+
+    def _compute_total(self):
+        for record in self:
+            record.total = record.price * record.quantity
+```
+En este ejemplo, el campo calculado total se declara con las opciones `search=True` y `readonly=True`, lo que significa que el campo se puede utilizar para realizar búsquedas en la base de datos
