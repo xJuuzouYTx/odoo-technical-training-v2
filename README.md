@@ -200,9 +200,9 @@ Para obtener más información sobre cómo declarar y utilizar campos calculados
 ### Campos calculados: Searching, readonly & Multiplace
 En Odoo, los campos calculados pueden tener diferentes opciones que afectan su comportamiento y uso. Algunas de estas opciones comunes son:
 
-**searching:** Especifica si el campo puede ser utilizado para realizar búsquedas en la base de datos. Si se establece en True, el campo se incluirá en la lista de campos disponibles para realizar búsquedas en la interfaz de usuario de Odoo.
-**readonly:** Especifica si el campo es de solo lectura. Si se establece en True, el usuario no podrá editar el valor del campo en la interfaz de usuario.
-**multiple:** Especifica si el campo puede tener múltiples valores. Si se establece en True, el campo se mostrará como una lista de valores en la interfaz de usuario, en lugar de como un único valor.
+**searching:** Especifica si el campo puede ser utilizado para realizar búsquedas en la base de datos. Si se establece en True, el campo se incluirá en la lista de campos disponibles para realizar búsquedas en la interfaz de usuario de Odoo.<br />
+**readonly:** Especifica si el campo es de solo lectura. Si se establece en True, el usuario no podrá editar el valor del campo en la interfaz de usuario.<br />
+**multiple:** Especifica si el campo puede tener múltiples valores. Si se establece en True, el campo se mostrará como una lista de valores en la interfaz de usuario, en lugar de como un único valor.<br />
 Por ejemplo, si un modelo de datos tiene un campo calculado llamado total que se calcula a partir del precio y la cantidad de un producto, se puede declarar de la siguiente manera:
 ```python
 class Product(models.Model):
