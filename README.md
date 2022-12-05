@@ -260,16 +260,85 @@ En Odoo, el módulo space_mission es una aplicación que se utiliza para gestion
 `mission`: Este modelo de datos almacena información sobre las misiones espaciales, como su nombre, fecha de lanzamiento y objetivo.</br>
 `mission_phase`: Este modelo de datos almacena información sobre las fases de una misión espacial, como su nombre, fecha de inicio y fecha de fin.</br>
 `astronaut`: Este modelo de datos almacena información sobre los astronautas, como su nombre, nacionalidad y habilidades.</br>
-Estos modelos de datos se relacionan entre sí de diferentes maneras, por ejemplo:</br>
+```python
 
-Los modelos Spacecraft, Mission y MissionPhase están relacionados entre sí de la siguiente manera:
+class Spacecraft(models.Model):
+    _name = 'space_mission.spacecraft'
 
-El modelo `Spacecraft` tiene un campo many2one llamado missions que se relaciona con el modelo `Mission`. Esto significa que una nave espacial puede estar asociada a una o varias misiones.</br>
+    name = fields.Char()
+    manufacturer = fields.Char()
+    model = fields.Char()
+    launch_date = fields.Date()
+    weight = fields.Float()
+    payload_capacity = fields.Float()
 
-El modelo `Mission` tiene un campo many2one llamado spacecraft que se relaciona con el modelo `Spacecraft`. Esto significa que una misión puede estar asociada a una nave espacial.</br>
+    # many2one field
+    #Una nave espacial puede estar asociada a una o varias misiones
+    missions = fields.Many2one('space_mission.mission', string='Missions')
 
-El modelo `Mission` tiene un campo one2many llamado phases que se relaciona con el modelo `MissionPhase`. Esto significa que una misión puede tener una o varias fases.</br>
+    # one2many field
+    crew = fields.One2many('space_mission.astronaut', 'spacecraft_id', string='Crew')
 
-El modelo `MissionPhase` tiene un campo many2one llamado mission que se relaciona con el modelo `Mission`. Esto significa que una fase de una misión puede estar asociada a una misión.</br>
 
-El modelo `Astronaut` se relaciona con el modelo `Mission` mediante un campo many2many llamado missions, ya que un astronauta puede estar asociado a una o varias misiones, y una misión puede tener uno o varios astronautas asociados.</br>
+class Mission(models.Model):
+    _name = 'space_mission.mission'
+
+    name = fields.Char()
+    launch_date = fields.Date()
+    objective = fields.Text()
+    budget = fields.Float()
+    status = fields.Selection([
+        ('planning', 'Planning'),
+        ('ongoing', 'Ongoing'),
+        ('completed', 'Completed'),
+        ('cancelled', 'Cancelled'),
+    ], default='planning')
+
+    # many2one field
+    # Una misión puede estar asociada a una nave espacial
+    spacecraft = fields.Many2one('space_mission.spacecraft', string='Spacecraft')
+
+    # many2many field
+    astronauts = fields.Many2many('space_mission.astronaut', 'mission_astronaut_rel', 'mission_id', 'astronaut_id', string='Astronauts')
+
+    # one2many field
+    # Una mision puede tener una o varias fases
+    phases = fields.One2many('space_mission.mission_phase', 'mission_id', string='Phases')
+
+
+class MissionPhase(models.Model):
+    _name = 'space_mission.mission_phase'
+
+    name = fields.Char()
+    start_date = fields.Date()
+    end_date = fields.Date()
+    objective = fields.Text()
+
+    # many2one field
+    # Una fase de una mision puede destar asociada a una misión
+    mission = fields.Many2one('space_mission.mission', string='Mission')
+    
+    
+class Astronaut(models.Model):
+    _name = 'space_mission.astronaut'
+
+    name = fields.Char()
+    nationality = fields.Char()
+    skills = fields.Text()
+    photo = fields.Binary(attachment=True)
+
+    # many2one field
+    spacecraft = fields.Many2one('space_mission.spacecraft', string='Spacecraft')
+
+    # many2many field
+    # Un astronauta puede estar asociado a una o varias misiones, y una mision puede tener uno o varios astronautas
+    missions = fields.Many2many('space_mission.mission', 'mission_astronaut_rel', 'astronaut_id', 'mission_id', string='Missions')
+```
+
+Spacecraft tiene un campo many2one llamado missions, que indica que una nave espacial puede estar asociada a una o varias misiones. También tiene un campo one2many llamado crew, que indica que una nave espacial puede tener una o varias tripulaciones de astronautas.</br>
+
+Mission tiene un campo many2one llamado spacecraft, que indica que una misión puede estar asociada a una nave espacial. También tiene un campo many2many llamado astronauts, que indica que una misión puede tener uno o varios astronautas, y que un astronauta puede estar asociado a una o varias misiones. Además, tiene un campo one2many llamado phases, que indica que una misión puede tener una o varias fases.</br>
+
+MissionPhase tiene un campo many2one llamado mission, que indica que una fase de una misión puede estar asociada a una misión.</br>
+
+Astronaut tiene un campo many2one llamado spacecraft, que indica que un astronauta puede estar asociado a una nave espacial. También tiene un campo many2many llamado missions, que indica que un astronauta puede estar asociado a una o varias misiones, y que una misión puede tener uno o varios astronautas.</br>
