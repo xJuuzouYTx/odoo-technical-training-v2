@@ -8,7 +8,7 @@ Por otro lado, un campo one2many se utiliza para establecer una relación de uno
 En resumen, un campo many2one se utiliza para establecer una relación de muchos a uno entre dos modelos de datos, mientras que un campo one2many se utiliza para establecer una relación de uno a muchos. Ambos campos son útiles para organizar y relacionar diferentes modelos de datos en Odoo.
 
 Para utilizar los campos many2one y one2many en Odoo, primero debes declararlos en el modelo de datos al que quieres agregarlos. Por ejemplo, si quieres agregar un campo many2one y un campo one2many al modelo de clientes, podrías agregar las siguientes líneas de código:
-```
+```python
 class Customer(models.Model):
     _name = 'customer'
 
@@ -22,4 +22,16 @@ class Customer(models.Model):
     # one2many field
     invoices = fields.One2many('account.invoice', 'customer_id', string='Invoices')
 
+```
+En este ejemplo, se ha declarado un modelo de datos llamado Customer que tiene tres campos de tipo Char (name, email y phone) y dos campos de relación: un campo many2one llamado orders que se relaciona con el modelo de datos sale.order, y un campo one2many llamado invoices que se relaciona con el modelo de datos account.invoice.
+
+Para utilizar estos campos en la interfaz de usuario de Odoo, debes agregar los campos correspondientes a la vista del formulario del modelo de clientes. Por ejemplo, podrías agregar las siguientes líneas de código a la vista del formulario del modelo de clientes para mostrar los campos orders y invoices:
+```xml
+<form string="Customer" class="oe_form">
+    <field name="name"/>
+    <field name="email"/>
+    <field name="phone"/>
+    <field name="orders" widget="many2one" options="{'no_open': True}"/>
+    <field name="invoices" widget="one2many"/>
+</form>
 ```
