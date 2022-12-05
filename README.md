@@ -252,3 +252,14 @@ Algunos ejemplos comunes de comandos especiales en Odoo son:
 `(3, id, 0)`: Este comando se utiliza para desvincular un registro existente en el modelo secundario de la relación del registro principal, sin borrarlo.</br>
 `(5, 0, 0)`: Este comando remueve todos los registros del set, equivalente ausar el comando 3 en todos los registros explicitamente, no puede ser usado en create().</br>
 `(6, 0, 0)`: Este comando reemplaza todos los registros exitente establecidos por la lista de "ids", es equivalente ausar el comando 4 para cada "id" en "ids". </br>
+
+### Modelos en space_mission
+En Odoo, el módulo space_mission es una aplicación que se utiliza para gestionar misiones espaciales. Este módulo contiene diferentes modelos de datos relacionados con las misiones espaciales, como por ejemplo: </br>
+
+`spacecraft`: Este modelo de datos almacena información sobre las naves espaciales, como su nombre, fabricante y modelo.</br>
+`mission`: Este modelo de datos almacena información sobre las misiones espaciales, como su nombre, fecha de lanzamiento y objetivo.</br>
+`mission_phase`: Este modelo de datos almacena información sobre las fases de una misión espacial, como su nombre, fecha de inicio y fecha de fin.</br>
+`astronaut`: Este modelo de datos almacena información sobre los astronautas, como su nombre, nacionalidad y habilidades.</br>
+Estos modelos de datos se relacionan entre sí de diferentes maneras, por ejemplo:</br>
+
+Una nave espacial puede tener uno o varios astronautas asociados a través de un campo one
