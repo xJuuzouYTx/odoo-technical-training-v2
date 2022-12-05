@@ -339,7 +339,7 @@ class Astronaut(models.Model):
 ```
 > En Odoo, los campos one2many, many2one y many2many se utilizan para establecer relaciones entre diferentes modelos de datos. Estos campos tienen diferentes parámetros que se utilizan para especificar la relación entre los modelos. </br>
 
-Un campo one2many tiene los siguientes parámetros:</br></br>
+Un campo one2many tiene los siguientes parámetros:</br>
 
 **comodel_name:** El nombre del modelo de datos al que está relacionado este campo.</br>
 **inverse_name:** El nombre del campo many2one en el modelo relacionado que se utilizará para establecer la relación inversa.</br>
