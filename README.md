@@ -357,3 +357,20 @@ Un campo many2many tiene los siguientes parámetros:</br>
 **column1:** El nombre de la columna de la tabla de relación que almacenará los IDs de los registros del primer modelo.</br>
 **column2:** El nombre de la columna de la tabla de relación que almacenará los IDs de los registros del segundo modelo.</br>
 **string:** Una cadena de texto que se utilizará como etiqueta para el campo en la interfaz de usuario.</br>
+
+```python
+class Libros(models.Model):
+    _name = 'libros'
+    
+    name = fields.Char(string="Nombre del libro", required=True)
+    editorial = fields.Char(string="Editorial", required=True)
+    isbn = fields.Char(string="ISBN", required=True)
+    
+    # Un libro puede tener un autor
+    author_id = fields.Many2one(comodel_name="autor", string="Autor")
+
+class Autor(models.Model):
+    _name = 'autor'
+    
+    name = fields.Char(string="Nombre")
+```
