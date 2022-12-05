@@ -337,7 +337,7 @@ class Astronaut(models.Model):
     # Un astronauta puede estar asociado a una o varias misiones y una misión puede tener uno o varios astronautas
     missions = fields.Many2many('space_mission.mission', 'mission_astronaut_rel', 'astronaut_id', 'mission_id', string='Missions')
 ```
-> En Odoo, los campos one2many, many2one y many2many se utilizan para establecer relaciones entre diferentes modelos de datos. Estos campos tienen diferentes parámetros que se utilizan para especificar la relación entre los modelos. </br></br>
+> En Odoo, los campos one2many, many2one y many2many se utilizan para establecer relaciones entre diferentes modelos de datos. Estos campos tienen diferentes parámetros que se utilizan para especificar la relación entre los modelos. </br>
 
 Un campo one2many tiene los siguientes parámetros:</br></br>
 
