@@ -35,3 +35,138 @@ Para utilizar estos campos en la interfaz de usuario de Odoo, debes agregar los 
     <field name="invoices" widget="one2many"/>
 </form>
 ```
+En este ejemplo, se ha añadido un campo orders que utiliza el widget many2one para mostrar la relación con el modelo sale.order, y un campo invoices que utiliza el widget one2many para mostrar la relación con el modelo account.invoice.
+
+Estos son solo ejemplos básicos de cómo utilizar los campos many2one y one2many en Odoo. Para obtener más información sobre cómo utilizar estos campos y otros aspectos de desarrollo en Odoo, puedes consultar la documentación oficial de Odoo o buscar tutoriales y recursos en línea.
+
+### Como se usa domain en one2many odoo
+En Odoo, el atributo domain se utiliza para especificar una condición que debe cumplirse para que un registro se muestre en un campo one2many. Por ejemplo, si quieres mostrar solo las órdenes de compra que estén en estado "Pendiente" en un campo one2many, podrías utilizar el atributo domain de la siguiente manera:
+```xml
+<form string="Customer" class="oe_form">
+    <field name="name"/>
+    <field name="email"/>
+    <field name="phone"/>
+    <field name="orders" widget="one2many" domain="[('state', '=', 'pending')]"/>
+</form>
+```
+En este ejemplo, se ha añadido un campo one2many llamado orders que utiliza el widget one2many para mostrar la relación con el modelo sale.order. Además, se ha utilizado el atributo domain para especificar que solo se deben mostrar las órdenes de compra cuyo campo estado tenga el valor "Pendiente".
+
+El atributo domain se utiliza en muchas situaciones en Odoo, no solo en campos one2many. Puedes utilizarlo para filtrar los datos que se muestran en una vista, para especificar las condiciones de una búsqueda avanzada, etc. Para obtener más información sobre cómo utilizar el atributo domain en Odoo, puedes consultar la documentación oficial o buscar tutoriales y recursos en línea.
+
+### Como se usa domain en one2many odoo en el modelo
+Si quieres utilizar el atributo domain en un campo one2many en el modelo de datos de Odoo, debes agregarlo a la declaración del campo en el modelo. Por ejemplo, si quieres agregar un campo one2many al modelo de clientes que muestre solo las órdenes de compra que estén en estado "Pendiente", podrías agregar las siguientes líneas de código al modelo de clientes:
+```python
+class Customer(models.Model):
+    _name = 'customer'
+
+    name = fields.Char()
+    email = fields.Char()
+    phone = fields.Char()
+
+    # one2many field with domain
+    orders = fields.One2many('sale.order', 'customer_id', string='Orders', domain="[('state', '=', 'pending')]")
+```
+En este ejemplo, se ha declarado un campo one2many llamado orders que se relaciona con el modelo sale.order. Además, se ha utilizado el atributo domain para especificar que solo se deben mostrar las órdenes de compra cuyo campo estado tenga el valor "Pendiente".
+
+Para utilizar este campo en la interfaz de usuario de Odoo, debes agregarlo a la vista del formulario del modelo de clientes. Por ejemplo, podrías agregar las siguientes líneas de código a la vista del formulario del modelo de clientes para mostrar el campo orders:
+```xml
+<form string="Customer" class="oe_form">
+    <field name="name"/>
+    <field name="email"/>
+    <field name="phone"/>
+    <field name="orders" widget="one2many"/>
+</form>
+```
+En este ejemplo, se ha añadido un campo one2many llamado orders que utiliza el widget one2many para mostrar la relación con el modelo sale.order. Como el atributo domain se ha especificado en la declaración del campo en el modelo, solo se mostrarán las órdenes de compra que cumplan la condición especificada en el atributo domain.
+
+Estos son solo ejemplos básicos de cómo utilizar el atributo domain en un campo one2many en el modelo de datos de Odoo. Para obtener más información sobre cómo utilizar este atributo y otros aspectos de desarrollo en Odoo, puedes consultar la documentación oficial o buscar tutoriales y recursos en línea.
+
+### Como se usa context en one2many odoo en el modelo
+En Odoo, el atributo context se utiliza para pasar información adicional a una vista o un campo de un modelo de datos. En el contexto de un campo one2many, el atributo context se puede utilizar para especificar información adicional que se debe utilizar para mostrar los datos del campo.
+
+Por ejemplo, si quieres mostrar solo las órdenes de compra que estén en estado "Pendiente" en un campo one2many, podrías utilizar el atributo context de la siguiente manera:
+```python
+class Customer(models.Model):
+    _name = 'customer'
+
+    name = fields.Char()
+    email = fields.Char()
+    phone = fields.Char()
+
+    # one2many field with context
+    orders = fields.One2many('sale.order', 'customer_id', string='Orders', context="{'default_state': 'pending'}")
+```
+En este ejemplo, se ha declarado un campo one2many llamado orders que se relaciona con el modelo sale.order. Además, se ha utilizado el atributo context para especificar que se deben mostrar solo las órdenes de compra cuyo campo estado tenga el valor "Pendiente".
+
+Para utilizar este campo en la interfaz de usuario de Odoo, debes agregarlo a la vista del formulario del modelo de clientes. Por ejemplo, podrías agregar las siguientes líneas de código a la vista del formulario del modelo de clientes para mostrar el campo orders:
+```xml
+<form string="Customer" class="oe_form">
+    <field name="name"/>
+    <field name="email"/>
+    <field name="phone"/>
+    <field name="orders" widget="one2many"/>
+</form>
+```
+En este ejemplo, se ha añadido un campo one2many llamado orders que utiliza el widget one2many para mostrar la relación con el modelo sale.order. Como el atributo context se ha especificado en la declaración del campo en el modelo, solo se mostrarán las órdenes de compra que cumplan la condición especificada en el atributo context.
+
+Estos son solo ejemplos básicos de cómo utilizar el atributo context en un campo one2many en el modelo de datos de Odoo. Para obtener más información sobre cómo utilizar este atributo y otros aspectos de desarrollo en Odoo, puedes consultar la documentación oficial o buscar tutoriales y recursos en línea.
+
+### Como se usa context y domain en one2many odoo en el modelo
+En Odoo, el atributo context y el atributo domain se pueden utilizar juntos en un campo one2many para especificar condiciones y pasar información adicional que se debe utilizar para mostrar los datos del campo.
+
+Por ejemplo, si quieres mostrar solo las órdenes de compra que estén en estado "Pendiente" y que tengan un importe mayor a 100 en un campo one2many, podrías utilizar el atributo context y el atributo domain de la siguiente manera:
+```python
+class Customer(models.Model):
+    _name = 'customer'
+
+    name = fields.Char()
+    email = fields.Char()
+    phone = fields.Char()
+
+    # one2many field with context and domain
+    orders = fields.One2many('sale.order', 'customer_id', string='Orders', context="{'default_state': 'pending'}", domain="[('amount_total', '>', 100)]")
+```
+En este ejemplo, se ha declarado un campo one2many llamado orders que se relaciona con el modelo sale.order. Además, se ha utilizado el atributo context para especificar que se deben mostrar solo las órdenes de compra cuyo campo estado tenga el valor "Pendiente", y se ha utilizado el atributo domain para especificar que solo se deben mostrar las órdenes de compra cuyo campo importe_total sea mayor a 100.
+
+Para utilizar este campo en la interfaz de usuario de Odoo, debes agregarlo a la vista del formulario del modelo de clientes. Por ejemplo, podrías agregar las siguientes líneas de código a la vista del formulario del modelo de clientes para mostrar el campo orders:
+```xml
+<form string="Customer" class="oe_form">
+    <field name="name"/>
+    <field name="email"/>
+    <field name="phone"/>
+    <field name="orders" widget="one2many"/>
+</form>
+```
+En este ejemplo, se ha añadido un campo one2many llamado orders que utiliza el widget one2many para mostrar la relación con el modelo sale.order. Como el atributo context y el atributo domain se han especificado en la declaración del campo en el modelo, solo se mostrarán las órdenes de compra que cumplan las condiciones especificadas en ambos atributos.
+
+Estos son solo ejemplos básicos de cómo utilizar el atributo context y el atributo domain en un campo one2many en el modelo de datos de Odoo. Para obtener más información sobre cómo utilizar estos atributos y otros aspectos de desarrollo en Odoo, puedes consultar la documentación oficial o buscar tutoriales y recurs
+
+### Ejemplo uso one2many y many2one en odoo con el modulo nave espacial
+El módulo de nave espacial en Odoo es un ejemplo ficticio que no existe realmente. Sin embargo, puedes utilizar los campos many2one y one2many en Odoo para modelar un sistema de gestión de naves espaciales de la siguiente manera:
+```python
+class Spacecraft(models.Model):
+    _name = 'spacecraft'
+
+    name = fields.Char()
+    manufacturer = fields.Char()
+    model = fields.Char()
+
+    # many2one field
+    captain = fields.Many2one('res.partner', string='Captain')
+
+    # one2many field
+    crew = fields.One2many('res.partner', 'spacecraft_id', string='Crew')
+```
+En este ejemplo, se ha declarado un modelo de datos llamado Spacecraft que tiene tres campos de tipo Char (name, manufacturer y model) y dos campos de relación: un campo many2one llamado captain que se relaciona con el modelo de datos res.partner, y un campo one2many llamado crew que se relaciona con el mismo modelo res.partner.
+
+Para utilizar estos campos en la interfaz de usuario de Odoo, debes agregar los campos correspondientes a la vista del formulario del modelo de naves espaciales. Por ejemplo, podrías agregar las siguientes líneas de código a la vista del formulario del modelo de naves espaciales para mostrar los campos captain y crew:
+```xml
+<form string="Spacecraft" class="oe_form">
+    <field name="name"/>
+    <field name="manufacturer"/>
+    <field name="model"/>
+    <field name="captain" widget="many2one" options="{'no_open': True}"/>
+    <field name="crew" widget="one2many"/>
+</form>
+```
+En este ejemplo, se ha añadido un campo many2one llamado captain que utiliza el widget many2one para mostrar la relación con el modelo res.partner, y un campo one2many llamado crew que utiliza el widget one2many para mostrar la relación con el mismo modelo res.partner.
