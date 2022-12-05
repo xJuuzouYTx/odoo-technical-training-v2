@@ -262,4 +262,14 @@ En Odoo, el módulo space_mission es una aplicación que se utiliza para gestion
 `astronaut`: Este modelo de datos almacena información sobre los astronautas, como su nombre, nacionalidad y habilidades.</br>
 Estos modelos de datos se relacionan entre sí de diferentes maneras, por ejemplo:</br>
 
-Una nave espacial puede tener uno o varios astronautas asociados a través de un campo one
+Los modelos Spacecraft, Mission y MissionPhase están relacionados entre sí de la siguiente manera:
+
+El modelo `Spacecraft` tiene un campo many2one llamado missions que se relaciona con el modelo `Mission`. Esto significa que una nave espacial puede estar asociada a una o varias misiones.</br>
+
+El modelo `Mission` tiene un campo many2one llamado spacecraft que se relaciona con el modelo `Spacecraft`. Esto significa que una misión puede estar asociada a una nave espacial.</br>
+
+El modelo `Mission` tiene un campo one2many llamado phases que se relaciona con el modelo `MissionPhase`. Esto significa que una misión puede tener una o varias fases.</br>
+
+El modelo `MissionPhase` tiene un campo many2one llamado mission que se relaciona con el modelo `Mission`. Esto significa que una fase de una misión puede estar asociada a una misión.</br>
+
+El modelo `Astronaut` se relaciona con el modelo `Mission` mediante un campo many2many llamado missions, ya que un astronauta puede estar asociado a una o varias misiones, y una misión puede tener uno o varios astronautas asociados.</br>
