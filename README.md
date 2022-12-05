@@ -337,15 +337,21 @@ class Astronaut(models.Model):
     # Un astronauta puede estar asociado a una o varias misiones y una misión puede tener uno o varios astronautas
     missions = fields.Many2many('space_mission.mission', 'mission_astronaut_rel', 'astronaut_id', 'mission_id', string='Missions')
 ```
-> one2many:</br>
-model_name, que especifica el nombre del modelo al que se establece la relación.</br>
-field1, que especifica el nombre del campo en el modelo actual que se utiliza para establecer la relación.</br>
-field2, que especifica el nombre del campo en el modelo al que se establece la relación.</br>
+> En Odoo, los campos one2many, many2one y many2many se utilizan para establecer relaciones entre diferentes modelos de datos. Estos campos tienen diferentes parámetros que se utilizan para especificar la relación entre los modelos. </br></br>
 
-> many2one:</br>
-model_name, que especifica el nombre del modelo al que se establece la relación.</br>
-field, que especifica el nombre del campo en el modelo actual que se utiliza para establecer la relación.</br>
+Un campo one2many tiene los siguientes parámetros:</br></br>
 
-> many2many:</br>
-model_name, que especifica el nombre del modelo al que se establece la relación.</br>
-table_name, que especifica el nombre de la tabla intermedia que se utiliza para establecer la relación.</br>
+**comodel_name:** El nombre del modelo de datos al que está relacionado este campo.</br>
+**inverse_name:** El nombre del campo many2one en el modelo relacionado que se utilizará para establecer la relación inversa.</br>
+**string:** Una cadena de texto que se utilizará como etiqueta para el campo en la interfaz de usuario.</br></br>
+
+Un campo many2one tiene los siguientes parámetros:</br>
+**comodel_name:** El nombre del modelo de datos al que está relacionado este campo.</br>
+**string:** Una cadena de texto que se utilizará como etiqueta para el campo en la interfaz de usuario.</br></br>
+
+Un campo many2many tiene los siguientes parámetros:</br>
+**comodel_name:** El nombre del modelo de datos al que está relacionado este campo.</br>
+**relation:** El nombre de la tabla de relación que se utilizará para almacenar las relaciones entre los registros de los dos modelos.</br>
+**column1:** El nombre de la columna de la tabla de relación que almacenará los IDs de los registros del primer modelo.</br>
+**column2:** El nombre de la columna de la tabla de relación que almacenará los IDs de los registros del segundo modelo.</br>
+**string:** Una cadena de texto que se utilizará como etiqueta para el campo en la interfaz de usuario.</br>
