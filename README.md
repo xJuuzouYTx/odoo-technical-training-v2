@@ -220,3 +220,24 @@ class Product(models.Model):
             record.total = record.price * record.quantity
 ```
 En este ejemplo, el campo calculado total se declara con las opciones `search=True` y `readonly=True`, lo que significa que el campo se puede utilizar para realizar búsquedas en la base de datos
+
+### Campos pseudo-relacionales
+En Odoo, los campos pseudo-relacionales son campos especiales que se utilizan para mostrar información de otro modelo de datos sin establecer una relación explícita entre ambos modelos. Estos campos se utilizan principalmente para mostrar información de un modelo secundario de forma sencilla y rápida, sin tener que crear campos many2one o one2many. </br>
+
+Por ejemplo, si un modelo de datos tiene un campo para almacenar el ID de un usuario, se puede utilizar un campo pseudo-relacional para mostrar el nombre del usuario asociado al ID sin tener que crear un campo many2one con el modelo res.users.</br>
+
+Para declarar un campo pseudo-relacional en un modelo de datos de Odoo, se utiliza la clase fields.Reference y se especifica el modelo secundario con el el que se relaciona. </br>
+Por ejemplo:
+```python
+class Task(models.Model):
+    _name = 'task'
+
+    name = fields.Char()
+    description = fields.Text()
+
+    # pseudo-relational field
+    user_id = fields.Reference('res.users', 'User')
+```
+En este ejemplo, se ha declarado un campo pseudo-relacional llamado user_id que se relaciona con el modelo res.users. Este campo se puede utilizar en la interfaz de usuario de Odoo para mostrar el nombre del usuario asociado a cada tarea, sin tener que crear un campo many2one con el modelo res.users. </br>
+
+Para obtener más información sobre cómo declarar y utilizar campos pseudo-relacionales en Odoo, puedes consultar la documentación oficial o buscar tutoriales y recursos en línea.</br>
