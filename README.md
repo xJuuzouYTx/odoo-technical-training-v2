@@ -343,11 +343,11 @@ Un campo one2many tiene los siguientes parámetros:</br></br>
 
 **comodel_name:** El nombre del modelo de datos al que está relacionado este campo.</br>
 **inverse_name:** El nombre del campo many2one en el modelo relacionado que se utilizará para establecer la relación inversa.</br>
-**string:** Una cadena de texto que se utilizará como etiqueta para el campo en la interfaz de usuario.</br></br>
+**string:** Una cadena de texto que se utilizará como etiqueta para el campo en la interfaz de usuario.</br>
 
 Un campo many2one tiene los siguientes parámetros:</br>
 **comodel_name:** El nombre del modelo de datos al que está relacionado este campo.</br>
-**string:** Una cadena de texto que se utilizará como etiqueta para el campo en la interfaz de usuario.</br></br>
+**string:** Una cadena de texto que se utilizará como etiqueta para el campo en la interfaz de usuario.</br>
 
 Un campo many2many tiene los siguientes parámetros:</br>
 **comodel_name:** El nombre del modelo de datos al que está relacionado este campo.</br>
