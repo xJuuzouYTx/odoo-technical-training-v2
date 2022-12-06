@@ -502,6 +502,23 @@ Aunque he mencionado algunos de los atributos más comunes de la vista kanban en
 `date_stop:` establece el campo que se utilizará como fecha de fin para los elementos en la vista kanban.</br>
 `date_deadline:` especifica el campo que se utilizará como fecha límite para los elementos en la vista kanban.</br>
 
+Un elemento principal de una vista Kanban en Odoo es la etiqueta <kanban>, que se utiliza para definir la estructura y el contenido de la vista Kanban. Dentro de la etiqueta <kanban>, se pueden utilizar diferentes elementos para definir los campos que se deben mostrar en cada tarjeta Kanban, la estructura de la tarjeta Kanban y los grupos o categorías en los que se pueden colocar las tarjetas.
+
+Algunos de los elementos más comunes que se pueden utilizar en una vista Kanban son:</br>
+`<field>:` se utiliza para especificar el campo del modelo que se debe mostrar en la tarjeta Kanban. Por ejemplo, si desea mostrar el nombre de la tarea en la tarjeta Kanban, puede utilizar el elemento <field name="name"/>.</br>
+`<templates>:` se utiliza para definir la estructura y el diseño de la tarjeta Kanban. Dentro de la etiqueta <templates>, se pueden utilizar diferentes elementos de plantilla para definir el contenido y el estilo de la tarjeta Kanban.</br>
+`<t t-name="kanban-box">:` se utiliza para definir la plantilla que se debe utilizar para mostrar cada tarjeta Kanban. Dentro de la etiqueta <t>, se pueden utilizar diferentes elementos HTML y elementos de campo para definir el contenido y el diseño de la tarjeta Kanban.</br>
+`<group>:` se utiliza para definir los grupos o categorías en los que se pueden colocar las tarjetas Kanban. Cada grupo se define mediante una etiqueta <group> con un atributo name que especifica el nombre del grupo y un atributo string que especifica el título del grupo.</br>
+
+Por ejemplo, si desea definir un grupo llamado "En progreso" con el título "Tareas en progreso", puede utilizar el elemento <group name="in_progress" string="Tareas en progreso"/>.</br>
+
+Además de estos elementos, una vista Kanban también puede utilizar diferentes atributos y opciones para personalizar el comportamiento y el diseño de la vista. Algunos de estos atributos y opciones son:</br>
+
+`limit:` se utiliza para especificar el número máximo de tarjetas Kanban que se deben mostrar en cada grupo. Si se especifica un valor para el atributo limit, las tarjetas Kanban se mostrarán en varias páginas y se podrá navegar entre ellas utilizando los controles de paginación.
+`quick_create:` se utiliza para habilitar la opción de creación rápida de tarjetas Kanban. Si se establece en True, se mostrará un botón "Crear" en la parte superior de la vista Kanban que permitirá al usuario crear una nueva tarjeta Kanban directamente desde la vista.
+`color:` se utiliza para especificar el color de fondo de cada tarjeta Kanban. El valor del atributo color puede ser un código de color HTML o un nombre de color predefinido en Odoo. Por ejemplo, si desea que las tarjetas Kanban tengan un fondo verde, puede utilizar el atributo color="green".
+
+
 #### Compute e inverse
 En Odoo, el atributo compute se utiliza para definir un campo calculado, que es un campo que se calcula dinámicamente en función de otros campos del modelo. Los campos calculados se utilizan para almacenar valores que dependen de otros valores en el modelo y no se pueden modificar directamente por el usuario.</br>
 El atributo inverse se utiliza en combinación con el atributo compute para especificar el nombre del método que se debe utilizar para invertir el cálculo del campo calculado. Esto se utiliza cuando se desea actualizar el valor de otro campo en el modelo en función del valor del campo calculado.</br>
