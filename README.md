@@ -374,3 +374,130 @@ class Autor(models.Model):
     
     name = fields.Char(string="Nombre")
 ```
+## Vistas avanzadas
+### Vista kanban
+La vista kanban en Odoo es una forma de visualizar y gestionar tareas o elementos de trabajo en un flujo de trabajo. Se representan mediante tarjetas, que se organizan en columnas que representan cada etapa del proceso. Esta vista se encuentra en un punto intermedio entre una vista de lista y un formulario no editable.
+
+Los registros pueden agruparse en columnas para facilitar su visualización y manipulación en un flujo de trabajo. También pueden desagruparse para mostrar los registros individualmente. Por defecto, se deberían agrupar los registros en la vista kanban, aunque esto puede cambiarse en la configuración.
+
+Sin embargo, se recomienda tener un máximo de 10 columnas en la vista kanban para evitar sobrecargar la interfaz y mejorar la usabilidad. Si se utilizan más de 10 columnas, puede que se cierren algunas de ellas para evitar sobrecargar la interfaz.
+
+`default_group_by:` permite especificar uno o más campos por los cuales se deben agrupar los registros en la vista kanban.
+`quick_create:` habilita la opción de crear registros rápidamente desde la vista kanban.
+`create_button:` muestra un botón para crear un nuevo registro en la vista kanban.
+`pagination:` habilita o deshabilita la paginación en la vista kanban.
+`limit:` establece el número máximo de registros que se deben mostrar en la vista kanban.
+`colors:` permite asignar colores a las columnas y tarjetas en la vista kanban para facilitar su identificación.
+
+#### kanban group_create
+En Odoo, el atributo group_create de la vista kanban permite agrupar los elementos que se crean rápidamente en la vista kanban en una columna específica. Por defecto, este atributo está desactivado y los elementos que se crean rápidamente se agregarán a la última columna de la vista kanban.
+
+Para activar el atributo group_create en la vista kanban, se puede establecer su valor en True en la configuración de la vista. Esto hará que los elementos que se creen rápidamente en la vista kanban se agrupen en una columna específica, que se puede definir en el atributo group_create_col_id.
+
+Por ejemplo, si se establece el atributo group_create_col_id en el ID de la columna "Pendientes", los elementos que se creen rápidamente en la vista kanban se agruparán en la columna "Pendientes". Esto puede ser útil para organizar mejor los elementos en la vista kanban y facilitar su gestión.
+
+#### kanban group_delete
+En Odoo, el atributo group_delete de la vista kanban permite agrupar los elementos que se eliminan en la vista kanban en una columna específica. Por defecto, este atributo está desactivado y los elementos que se eliminan se quitarán de la vista kanban sin agruparse en ninguna columna.
+
+Para activar el atributo group_delete en la vista kanban, se puede establecer su valor en True en la configuración de la vista. Esto hará que los elementos que se eliminen en la vista kanban se agrupen en una columna específica, que se puede definir en el atributo group_delete_col_id.
+
+Por ejemplo, si se establece el atributo group_delete_col_id en el ID de la columna "Eliminados", los elementos que se eliminen en la vista kanban se agruparán en la columna "Eliminados". Esto puede ser útil para organizar mejor los elementos en la vista kanban y facilitar su gestión.
+
+#### kanban group_edit
+En Odoo, el atributo group_edit de la vista kanban permite agrupar los elementos que se editan en la vista kanban en una columna específica. Por defecto, este atributo está desactivado y los elementos que se editan se mantienen en la misma columna de la vista kanban.
+
+Para activar el atributo group_edit en la vista kanban, se puede establecer su valor en True en la configuración de la vista. Esto hará que los elementos que se editen en la vista kanban se agrupen en una columna específica, que se puede definir en el atributo group_edit_col_id.
+
+Por ejemplo, si se establece el atributo group_edit_col_id en el ID de la columna "Editados", los elementos que se editen en la vista kanban se agruparán en la columna "Editados". Esto puede ser útil para organizar mejor los elementos en la vista kanban y facilitar su gestión.
+
+#### archivable
+En Odoo, el atributo archivable de la vista kanban indica si los elementos que se eliminan en la vista kanban se moverán a una columna de elementos archivados o se eliminarán definitivamente. Por defecto, este atributo está desactivado y los elementos que se eliminan se eliminarán definitivamente.
+
+Para activar el atributo archivable en la vista kanban, se puede establecer su valor en True en la configuración de la vista. Esto hará que los elementos que se eliminen en la vista kanban se muevan a una columna de elementos archivados en lugar de eliminarse definitivamente. La columna de elementos archivados se puede definir en el atributo archived_column_id.
+
+Por ejemplo, si se establece el atributo archived_column_id en el ID de la columna "Archivados", los elementos que se eliminen en la vista kanban se moverán a la columna "Archivados" en lugar de eliminarse definitivamente. Esto puede ser útil para facilitar la recuperación de elementos eliminados accidentalmente en la vista kanban.
+
+#### quick_create
+En Odoo, el atributo quick_create de la vista kanban indica si se permitirá crear elementos rápidamente desde la vista kanban. Por defecto, este atributo está desactivado y no se permitirá crear elementos rápidamente en la vista kanban.
+
+Para activar el atributo quick_create en la vista kanban, se puede establecer su valor en True en la configuración de la vista. Esto habilitará la opción de crear elementos rápidamente en la vista kanban, lo que permitirá agregar nuevos elementos a la vista de forma rápida y sencilla.
+
+Además, el atributo quick_create_options permite definir las opciones que se mostrarán al crear un elemento rápidamente en la vista kanban. Por ejemplo, se pueden definir campos obligatorios, valores predeterminados o campos ocultos para facilitar la creación de elementos en la vista kanban.
+
+#### quick_create_view
+En Odoo, el atributo quick_create_view de la vista kanban indica la vista que se utilizará para crear elementos rápidamente en la vista kanban. Por defecto, este atributo se establece en quick_create y se utilizará una vista de creación rápida predeterminada para crear elementos en la vista kanban.
+
+Para utilizar una vista personalizada para crear elementos rápidamente en la vista kanban, se puede establecer el atributo quick_create_view en el ID de la vista personalizada en la configuración de la vista kanban. Esto permite utilizar una vista personalizada que contenga solo los campos relevantes para la creación rápida de elementos en la vista kanban.
+
+Además, el atributo quick_create_options permite definir las opciones que se mostrarán al crear un elemento rápidamente en la vista kanban. Por ejemplo, se pueden definir campos obligatorios, valores predeterminados o campos ocultos para facilitar la creación de elementos en la vista kanban.
+```xml
+<kanban>
+    <field name="name"/>
+    <field name="stage_id"/>
+    <templates>
+        <t t-name="kanban-box">
+            <div class="oe_kanban_global_click">
+                <field name="name"/>
+                <field name="stage_id"/>
+            </div>
+        </t>
+    </templates>
+    <attrs>
+        <att name="quick_create">True</att>
+        <att name="quick_create_view">my_quick_create_view</att>
+    </attrs>
+</kanban>
+```
+En este ejemplo, se ha habilitado el atributo quick_create en la vista kanban mediante el uso del elemento attrs. Esto permitirá crear elementos rápidamente en la vista kanban mediante una vista de creación rápida personalizada.
+
+Además, se ha establecido el atributo quick_create_view en el ID de la vista personalizada my_quick_create_view. Esta vista personalizada contendrá solo los campos relevantes para la creación rápida de elementos en la vista kanban, como el nombre y el estado del elemento.
+
+En la plantilla kanban-box, se han definido dos campos, name
+
+#### records_draggable
+En Odoo, el atributo records_draggable de la vista kanban indica si los elementos de la vista kanban se pueden mover entre las diferentes columnas mediante arrastrar y soltar. Por defecto, este atributo está desactivado y los elementos no se podrán mover entre las columnas mediante arrastrar y soltar.
+
+Para activar el atributo records_draggable en la vista kanban, se puede establecer su valor en True en la configuración de la vista. Esto habilitará la opción de mover elementos entre las columnas mediante arrastrar y soltar en la vista kanban, lo que permite reordenar los elementos de forma rápida y sencilla.
+
+Además, el atributo records_editable permite habilitar la edición de elementos en la vista kanban mediante doble clic o clic en el botón de edición. Esto permite modificar los valores de los campos de los elementos en la vista kanban de forma sencilla y rápida.
+```xml
+<kanban>
+    <field name="name"/>
+    <field name="stage_id"/>
+    <templates>
+        <t t-name="kanban-box">
+            <div class="oe_kanban_global_click">
+                <field name="name"/>
+                <field name="stage_id"/>
+            </div>
+        </t>
+    </templates>
+    <attrs>
+        <att name="records_draggable">True</att>
+    </attrs>
+</kanban>
+```
+En este ejemplo, se ha habilitado el atributo records_draggable en la vista kanban mediante el uso del elemento attrs. Esto permitirá mover los elementos de la vista kanban entre las diferentes columnas mediante arrastrar y soltar.
+
+Además, se han definido dos campos, name y stage_id, que se mostrarán en cada tarjeta de la vista kanban. Estos campos se mostrarán en la plantilla kanban-box, que se utilizará para dar formato a las tarjetas de la vista kanban. De esta forma, se pueden personalizar la apariencia y el contenido de las tarjetas de la vista kanban.
+
+#### Elementos de kanban
+fields: muestran los valores de los campos de los elementos en las tarjetas de la vista kanban. Por ejemplo, se pueden mostrar los campos name, stage_id o progress en cada tarjeta para mostrar información relevante del elemento.</br>
+Barra de progreso: muestra el progreso de cada elemento en forma de barra de progreso en las tarjetas de la vista kanban. Esto permite visualizar de forma sencilla el avance de cada elemento en el flujo de trabajo.</br>
+groups: agrupan las tarjetas en diferentes columnas de la vista kanban en función de un campo específico. Por ejemplo, se pueden agrupar las tarjetas por el campo stage_id para mostrar las tarjetas en las diferentes etapas del flujo de trabajo.</br>
+Tags: muestran etiquetas en las tarjetas de la vista kanban para indicar el estado o la prioridad de cada elemento. Esto permite identificar rápidamente los elementos que requieren atención.
+
+Aunque he mencionado algunos de los atributos más comunes de la vista kanban en Odoo, hay muchos más atributos que se pueden utilizar para personalizar su apariencia y comportamiento. Algunos de estos atributos adicionales incluyen:
+
+`create_button:` indica si se mostrará un botón para crear nuevos elementos en la vista kanban.
+`quick_create_class:` define la clase CSS que se utilizará para el formulario de creación rápida en la vista kanban.
+`deactivate_drag_and_drop:` indica si se desactivará la función de arrastrar y soltar en la vista kanban.
+`default_order:` establece el orden en que se mostrarán los elementos en la vista kanban.
+`sequence:` define el orden en que se mostrarán las columnas en la vista kanban.
+`foldable:` indica si se permitirá plegar y desplegar las columnas en la vista kanban.
+`default_folded:` establece si las columnas se mostrarán plegadas o desplegadas por defecto en la vista kanban.
+`resequence_on_drop:` indica si se reordenarán automáticamente los elementos en la vista kanban cuando se cambien de columna.
+`date_start:` especifica el campo que se utilizará como fecha de inicio para los elementos en la vista kanban.
+`date_delay:` define el campo que se utilizará como retraso para los elementos en la vista kanban.
+`date_stop:` establece el campo que se utilizará como fecha de fin para los elementos en la vista kanban.
+`date_deadline:` especifica el campo que se utilizará como fecha límite para los elementos en la vista kanban.
