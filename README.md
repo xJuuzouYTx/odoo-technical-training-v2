@@ -501,3 +501,28 @@ Aunque he mencionado algunos de los atributos más comunes de la vista kanban en
 `date_delay:` define el campo que se utilizará como retraso para los elementos en la vista kanban.</br>
 `date_stop:` establece el campo que se utilizará como fecha de fin para los elementos en la vista kanban.</br>
 `date_deadline:` especifica el campo que se utilizará como fecha límite para los elementos en la vista kanban.</br>
+
+#### Compute e inverse
+En Odoo, el atributo compute se utiliza para definir un campo calculado, que es un campo que se calcula dinámicamente en función de otros campos del modelo. Los campos calculados se utilizan para almacenar valores que dependen de otros valores en el modelo y no se pueden modificar directamente por el usuario.</br>
+El atributo inverse se utiliza en combinación con el atributo compute para especificar el nombre del método que se debe utilizar para invertir el cálculo del campo calculado. Esto se utiliza cuando se desea actualizar el valor de otro campo en el modelo en función del valor del campo calculado.</br>
+Por ejemplo, si desea definir un campo calculado que muestre el nombre completo de un registro de res.partner y un método inverse para actualizar el nombre y el apellido del registro de res.partner cuando se cambie el valor del campo full_name, puede utilizar el siguiente código:</br>
+```python
+from odoo import fields, models
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    # Define the full name field as a computed field with an inverse method
+    full_name = fields.Char(string="Full Name", compute="_compute_full_name",
+        inverse="_inverse_full_name")
+
+    def _compute_full_name(self):
+        for partner in self:
+            partner.full_name = partner.name + " " + partner.last_name
+
+    def _inverse_full_name(self):
+        for partner in self:
+            full_name_parts = partner.full_name.split(" ")
+            partner.name = full_name_parts[0]
+            partner.last_name = full_name_parts[1]
+```
