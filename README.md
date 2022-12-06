@@ -485,19 +485,19 @@ Además, se han definido dos campos, name y stage_id, que se mostrarán en cada 
 fields: muestran los valores de los campos de los elementos en las tarjetas de la vista kanban. Por ejemplo, se pueden mostrar los campos name, stage_id o progress en cada tarjeta para mostrar información relevante del elemento.</br>
 Barra de progreso: muestra el progreso de cada elemento en forma de barra de progreso en las tarjetas de la vista kanban. Esto permite visualizar de forma sencilla el avance de cada elemento en el flujo de trabajo.</br>
 groups: agrupan las tarjetas en diferentes columnas de la vista kanban en función de un campo específico. Por ejemplo, se pueden agrupar las tarjetas por el campo stage_id para mostrar las tarjetas en las diferentes etapas del flujo de trabajo.</br>
-Tags: muestran etiquetas en las tarjetas de la vista kanban para indicar el estado o la prioridad de cada elemento. Esto permite identificar rápidamente los elementos que requieren atención.
+Tags: muestran etiquetas en las tarjetas de la vista kanban para indicar el estado o la prioridad de cada elemento. Esto permite identificar rápidamente los elementos que requieren atención.</br>
 
-Aunque he mencionado algunos de los atributos más comunes de la vista kanban en Odoo, hay muchos más atributos que se pueden utilizar para personalizar su apariencia y comportamiento. Algunos de estos atributos adicionales incluyen:
+Aunque he mencionado algunos de los atributos más comunes de la vista kanban en Odoo, hay muchos más atributos que se pueden utilizar para personalizar su apariencia y comportamiento. Algunos de estos atributos adicionales incluyen:</br>
 
-`create_button:` indica si se mostrará un botón para crear nuevos elementos en la vista kanban.
-`quick_create_class:` define la clase CSS que se utilizará para el formulario de creación rápida en la vista kanban.
-`deactivate_drag_and_drop:` indica si se desactivará la función de arrastrar y soltar en la vista kanban.
-`default_order:` establece el orden en que se mostrarán los elementos en la vista kanban.
-`sequence:` define el orden en que se mostrarán las columnas en la vista kanban.
-`foldable:` indica si se permitirá plegar y desplegar las columnas en la vista kanban.
-`default_folded:` establece si las columnas se mostrarán plegadas o desplegadas por defecto en la vista kanban.
-`resequence_on_drop:` indica si se reordenarán automáticamente los elementos en la vista kanban cuando se cambien de columna.
-`date_start:` especifica el campo que se utilizará como fecha de inicio para los elementos en la vista kanban.
-`date_delay:` define el campo que se utilizará como retraso para los elementos en la vista kanban.
-`date_stop:` establece el campo que se utilizará como fecha de fin para los elementos en la vista kanban.
-`date_deadline:` especifica el campo que se utilizará como fecha límite para los elementos en la vista kanban.
+`create_button:` indica si se mostrará un botón para crear nuevos elementos en la vista kanban.</br>
+`quick_create_class:` define la clase CSS que se utilizará para el formulario de creación rápida en la vista kanban.</br>
+`deactivate_drag_and_drop:` indica si se desactivará la función de arrastrar y soltar en la vista kanban.</br>
+`default_order:` establece el orden en que se mostrarán los elementos en la vista kanban.</br>
+`sequence:` define el orden en que se mostrarán las columnas en la vista kanban.</br>
+`foldable:` indica si se permitirá plegar y desplegar las columnas en la vista kanban.</br>
+`default_folded:` establece si las columnas se mostrarán plegadas o desplegadas por defecto en la vista kanban.</br>
+`resequence_on_drop:` indica si se reordenarán automáticamente los elementos en la vista kanban cuando se cambien de columna.</br>
+`date_start:` especifica el campo que se utilizará como fecha de inicio para los elementos en la vista kanban.</br>
+`date_delay:` define el campo que se utilizará como retraso para los elementos en la vista kanban.</br>
+`date_stop:` establece el campo que se utilizará como fecha de fin para los elementos en la vista kanban.</br>
+`date_deadline:` especifica el campo que se utilizará como fecha límite para los elementos en la vista kanban.</br>
