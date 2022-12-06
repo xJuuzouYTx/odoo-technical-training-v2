@@ -482,10 +482,10 @@ En este ejemplo, se ha habilitado el atributo records_draggable en la vista kanb
 Además, se han definido dos campos, name y stage_id, que se mostrarán en cada tarjeta de la vista kanban. Estos campos se mostrarán en la plantilla kanban-box, que se utilizará para dar formato a las tarjetas de la vista kanban. De esta forma, se pueden personalizar la apariencia y el contenido de las tarjetas de la vista kanban.
 
 #### Elementos de kanban
-fields: muestran los valores de los campos de los elementos en las tarjetas de la vista kanban. Por ejemplo, se pueden mostrar los campos name, stage_id o progress en cada tarjeta para mostrar información relevante del elemento.</br>
-Barra de progreso: muestra el progreso de cada elemento en forma de barra de progreso en las tarjetas de la vista kanban. Esto permite visualizar de forma sencilla el avance de cada elemento en el flujo de trabajo.</br>
-groups: agrupan las tarjetas en diferentes columnas de la vista kanban en función de un campo específico. Por ejemplo, se pueden agrupar las tarjetas por el campo stage_id para mostrar las tarjetas en las diferentes etapas del flujo de trabajo.</br>
-Tags: muestran etiquetas en las tarjetas de la vista kanban para indicar el estado o la prioridad de cada elemento. Esto permite identificar rápidamente los elementos que requieren atención.</br>
+`fields:` muestran los valores de los campos de los elementos en las tarjetas de la vista kanban. Por ejemplo, se pueden mostrar los campos name, stage_id o progress en cada tarjeta para mostrar información relevante del elemento.</br>
+`progressbar:` muestra el progreso de cada elemento en forma de barra de progreso en las tarjetas de la vista kanban. Esto permite visualizar de forma sencilla el avance de cada elemento en el flujo de trabajo.</br>
+`groups: agrupan las tarjetas en diferentes columnas de la vista kanban en función de un campo específico. Por ejemplo, se pueden agrupar las tarjetas por el campo stage_id para mostrar las tarjetas en las diferentes etapas del flujo de trabajo.</br>
+`Tags:` muestran etiquetas en las tarjetas de la vista kanban para indicar el estado o la prioridad de cada elemento. Esto permite identificar rápidamente los elementos que requieren atención.</br>
 
 Aunque he mencionado algunos de los atributos más comunes de la vista kanban en Odoo, hay muchos más atributos que se pueden utilizar para personalizar su apariencia y comportamiento. Algunos de estos atributos adicionales incluyen:</br>
 
